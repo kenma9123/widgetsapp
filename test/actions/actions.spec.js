@@ -5,21 +5,43 @@ import * as actions from '../../src/actions';
 const id = '53551207804956';
 
 describe('Widget app actions', () => {
-  it('toggleWidget should create TOGGLE_WIDGET action', () => {
-    expect(actions.toggleWidget(id))
+  it('toggleWidget should create TOGGLE_WIDGET and SELECT_WIDGET action', () => {
+    let widget = {
+      id
+    };
+    expect(actions.toggleWidget(widget))
       .to.be.an('object')
       .that.is.deep.equal({
-        type: types.TOGGLE_WIDGET,
-        id
+        types: [
+          {
+            type: types.TOGGLE_WIDGET,
+            id: widget.id
+          },
+          {
+            type: types.SELECT_WIDGET,
+            widget
+          }
+        ]
       })
   })
 
-  it('toggleForm should create TOGGLE_FORM action', () => {
-    expect(actions.toggleForm(id))
+  it('toggleForm should create TOGGLE_FORM and SELECT_FORM action', () => {
+    let form = {
+      id
+    };
+    expect(actions.toggleForm(form))
       .to.be.an('object')
       .that.is.deep.equal({
-        type: types.TOGGLE_FORM,
-        id
+        types: [
+          {
+            type: types.TOGGLE_FORM,
+            id: form.id
+          },
+          {
+            type: types.SELECT_FORM,
+            form
+          }
+        ]
       })
   })
 

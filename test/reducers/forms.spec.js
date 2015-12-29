@@ -6,7 +6,7 @@ let formsList = JSON.parse(require('fs').readFileSync('./test/mock/forms.json', 
 
 let formRequest = forms(undefined, {
   type: types.FORMS_SUCCESS,
-  response: formsList.content
+  response: formsList
 });
 
 describe('forms reducer', () => {
@@ -17,6 +17,7 @@ describe('forms reducer', () => {
   it('should handle initial state', () => {
     expect(forms(undefined, {})).to.deep.equal({
       isFetching: false,
+      error: {},
       selectedForm: {},
       formList: []
     })

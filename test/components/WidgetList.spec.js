@@ -25,7 +25,7 @@ describe('components', () => {
     let component = {};
     beforeEach(() => {
       let componentInDoc = TestUtils.renderIntoDocument(
-        <WidgetList widgets={props.widgets} actions={props.actions}/>
+        <WidgetList widgets={props.widgets} actions={props.actions} onSelect={props.onSelect}/>
       );
       component = ReactDOM.findDOMNode(componentInDoc);
     });
@@ -43,7 +43,7 @@ describe('components', () => {
       expect(ulChild.children.length).to.be.equal(5);
     })
 
-    it('should click the first widget on the list and callback', () => {
+    it('should click the first widget on the list and callbacks', () => {
       let ulChild = component.children[0];
       let liChild = ulChild.children[0];
       expect(liChild.className).to.contain('list-item');

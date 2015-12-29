@@ -24,7 +24,7 @@ let props = {
   actions: {
     toggleForm: sinon.spy(),
     fetchForms: sinon.spy()
-  }
+  },
 };
 
 describe('components', () => {
@@ -32,7 +32,7 @@ describe('components', () => {
     let component = {};
     beforeEach(() => {
       let componentInDoc = TestUtils.renderIntoDocument(
-        <FormList user={props.user} forms={props.forms} actions={props.actions}/>
+        <FormList user={props.user} forms={props.forms} actions={props.actions} onSelect={props.onSelect}/>
       );
       component = ReactDOM.findDOMNode(componentInDoc);
     });
@@ -54,7 +54,7 @@ describe('components', () => {
       expect(ulChild.children.length).to.be.above(10);
     })
 
-    it('should click the first form on the list and callback', () => {
+    it('should click the first form on the list and callbacks', () => {
       let ulChild = component.children[0];
       let liChild = ulChild.children[0];
       expect(liChild.className).to.contain('list-item');
