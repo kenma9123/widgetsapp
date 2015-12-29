@@ -5,15 +5,15 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import WidgetList from '../../src/components/WidgetList';
-import * as reducerData from '../../src/constants/ReducerData';
 import fs from 'fs';
 chai.use(sinonChai);
 
+let widgetList = require('../../config/widgets.json');
 let expect = chai.expect;
 let props = {
   widgets: {
     selectedWidget: {},
-    widgetList: reducerData.WIDGET_LIST
+    widgetList: widgetList
   },
   actions: {
     toggleWidget: sinon.spy()
