@@ -7,8 +7,12 @@ export default class Stage extends Component {
   }
 
   render() {
+    const { picker } = this.props;
     return (
-      <div className="division stage">Stages</div>
+      <div className="division stage">
+        Selected widget: { picker.widget.name } <br/>
+        Selected Form: { picker.form.title }
+      </div>
     );
   }
 }

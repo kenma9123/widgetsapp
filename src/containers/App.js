@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 
-class App extends Component {
+export class App extends Component {
 
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class App extends Component {
       <div className="section">
         <div className="division navigation"></div>
         <Pickers { ...this.props }/>
-        <Stage />
+        <Stage { ...this.props }/>
       </div>
     );
   }
@@ -26,7 +26,8 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     widgets: state.widgets,
-    forms: state.forms
+    forms: state.forms,
+    picker: state.picker
   };
 }
 

@@ -76,6 +76,6 @@ export default class FormList extends Component {
 
   selectForm(form) {
     // console.log(form);
-    this.props.actions.toggleForm(form.id);
+    this.props.actions.toggleForm(form);
   }
 }

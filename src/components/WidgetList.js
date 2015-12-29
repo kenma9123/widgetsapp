@@ -44,6 +44,6 @@ export default class WidgetList extends Component {
   }
 
   selectWidget(widget) {
-    this.props.actions.toggleWidget(widget.id);
+    this.props.actions.toggleWidget(widget);
   }
 }

@@ -3,6 +3,7 @@ import { filter } from 'lodash/collection';
 
 export default function forms(state = {
   isFetching: false,
+  error: {},
   selectedForm: {},
   formList: []
 }, action) {
@@ -23,8 +24,13 @@ export default function forms(state = {
       return {
         ...state,
         isFetching: false,
-        formList: action.response
+        formList: action.response.content
       }
+    case types.FORMS_FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
     default:
       return state;
   }

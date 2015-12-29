@@ -16,16 +16,6 @@ export default class Pickers extends Component {
     super(props);
   }
 
-  getSelectedForm() {
-    let { forms } = this.props;
-    return (!isEmpty(forms.selectedForm)) ? forms.selectedForm.title : '';
-  }
-
-  getSelectedWidget() {
-    let { widgets } = this.props;
-    return (!isEmpty(widgets.selectedWidget)) ? widgets.selectedWidget.name : '';
-  }
-
   render() {
     const { user, widgets, forms, actions } = this.props;
 
@@ -47,7 +37,7 @@ export default class Pickers extends Component {
               <i className="fa fa-th-list"></i>
             </span>
           </div>
-          <FormList user={user} forms={forms} actions={actions}/>
+          <FormList user={user} forms={forms} actions={actions} />
         </div>
       </div>
     );
