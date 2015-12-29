@@ -1,3 +1,4 @@
 node_modules
 test-old
 syncAll
+config/apikey.json

@@ -1,10 +1,13 @@
 const USER_LOGGEDIN = 'USER_LOGGEDIN';
 const USER_LOGOUT = 'USER_LOGOUT';
 
+// for testing recreate apikey.json with
+// {apikey:<value>}
+let apikey = require('../../config/apikey.json');
 export default function user(state = {
   isLoggedIn: true,
   details: {},
-  apikey: '4cf8b41e95cd56c492594bb245ac2ffb'
+  apikey: apikey.apikey
 }, action) {
   switch (action.type) {
     case USER_LOGGEDIN:

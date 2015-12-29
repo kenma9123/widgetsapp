@@ -1,4 +1,4 @@
-export const WIDGET_LIST = [{
+[{
   "alias": "drag_and_drop_upload",
   "color": "#EF2C39",
   "id": "52960d32a249ca096f000005",
@@ -33,4 +33,4 @@ export const WIDGET_LIST = [{
   "name": "Voice Recorder",
   "selected": false,
   "url": "http://widgets.jotform.com/widget/voice_recorder"
-}];
+}]
