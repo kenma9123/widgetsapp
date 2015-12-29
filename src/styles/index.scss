@@ -1,0 +1,126 @@
+@import "variables";
+@import "mixins";
+
+html, body {
+    @extend %full-height;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.widgets-app {
+    @extend %full-height;
+    font-family: $app-universal-font-family;
+
+    .section {
+        @extend %full-height;
+
+        .division {
+            @extend %full-height;
+            width: 400px;
+            display: inline-block;
+            vertical-align: top;
+            // border-right: 1px solid #ECECEC;
+
+            &.navigation {
+                border: none;
+                width: 65px;
+                display: none;
+            }
+
+            &.data-list {
+
+            }
+        }
+
+        .section-title {
+            background-color: $section-title-bg-color;
+            color: $section-title-txt-color;
+            padding: 20px;
+            font-size: 0.9em;
+
+            .icon-container {
+                float: right;
+            }
+        }
+    }
+
+    /**
+     * Lists
+     */
+    .list {
+        padding: 10px 20px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+
+        &.scroll {
+            // overflow-y: scroll;
+            overflow: hidden;
+        }
+
+        .list-item {
+            cursor: pointer;
+            background: $list-item-bg-color;
+
+            i.fa {
+                position: absolute;
+                top: 13px;
+                left: 20px;
+            }
+
+            position: relative;
+            padding: 10px 20px 10px 50px;
+            border-bottom: 1px solid #ECECEC;
+            border-right: 1px solid #ECECEC;
+            border-left: 1px solid #ECECEC;
+
+            * {
+                margin: 5px 0;
+            }
+
+            .text {
+                color: $list-item-text-color;
+                font-size: 0.9em;
+            }
+
+            .date {
+                font-size: 0.9em;
+                color: $list-item-date-color;
+            }
+
+            &.selected {
+                background: $list-item-selected-color;
+                border-right: none;
+                @include shadow(0px 0px 55px -23px rgba(99,99,99,1));
+
+                &:before {
+                    @extend %navi-before-mixin;
+                }
+
+                &:hover {
+                    background: $list-item-hover-color;
+                }
+            }
+
+            &:hover {
+                background: $list-item-hover-color;
+                &:before {
+                    @extend %navi-before-mixin;
+                }
+            }
+        }
+
+        /**
+         * Form list
+         */
+        &.forms-list {
+            i.fa {
+                color: $list-item-fonts-icon-color;
+            }
+        }
+    }
+}
