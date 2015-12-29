@@ -1,4 +1,6 @@
 node_modules
+server/classes/lib/aws
+server/classes/S3Settings.php
 test-old
 syncAll
 config/apikey.json
