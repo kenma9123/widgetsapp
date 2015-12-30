@@ -6,7 +6,9 @@ const USER_LOGOUT = 'USER_LOGOUT';
 let apikey = require('../../config/apikey.json');
 export default function user(state = {
   isLoggedIn: true,
-  details: {},
+  details: {
+    name: 'Kenneth Palaganas'
+  },
   apikey: apikey.apikey
 }, action) {
   switch (action.type) {

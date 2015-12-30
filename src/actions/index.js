@@ -5,7 +5,7 @@ import * as types from '../constants/ActionTypes';
  */
 export function toggleWidget(widget) {
   return {
-    types: [
+    steps: [
       {
         type: types.TOGGLE_WIDGET,
         id: widget.id
@@ -23,7 +23,7 @@ export function toggleWidget(widget) {
  */
 export function toggleForm(form) {
   return {
-    types: [
+    steps: [
       {
         type: types.TOGGLE_FORM,
         id: form.id
@@ -44,8 +44,7 @@ export function toggleForm(form) {
 export function fetchForms(user) {
   return {
     types: [types.FORMS_FETCH, types.FORMS_SUCCESS, types.FORMS_FAILURE],
-    callapi: true,
-    endpoint: `user/forms?apiKey=${user.apikey}&limit=20`
+    endpoint: `https://api.jotform.com/user/forms?apiKey=${user.apikey}&limit=20`
   };
 }
 

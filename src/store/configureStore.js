@@ -1,18 +1,18 @@
 import React from 'react';
 import { compose, createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { enableBatching } from 'redux-batched-actions';
 import { devTools, persistState } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import rootReducer from '../reducers';
-import api from '../middleware/api';
+import middlewares from '../middleware';
 
 // applyMiddleware supercharges createStore with middleware:
-let modifiedStoreCreator = applyMiddleware(thunk, api)(createStore);
+let modifiedStoreCreator = applyMiddleware(...middlewares)(createStore);
 
 if (__DEVELOPMENT__) {
   modifiedStoreCreator = compose(
     // Enables your middleware:
-    applyMiddleware(thunk, api),
+    applyMiddleware(...middlewares),
     // Provides support for DevTools:
     devTools(),
     // Lets you write ?debug_session=<name> in address bar to persist debug sessions
@@ -32,5 +32,5 @@ export function renderDevTools(store) {
 }
 
 export function configureStore(initialState) {
-  return modifiedStoreCreator(rootReducer, initialState);
+  return modifiedStoreCreator(enableBatching(rootReducer), initialState);
 }

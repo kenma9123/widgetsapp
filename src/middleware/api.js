@@ -1,7 +1,6 @@
 import reqwest from 'reqwest';
 import async from 'async';
-import { forEach } from 'lodash/collection';
-import { isObject } from 'lodash/lang';
+import { isArray } from 'lodash/lang';
 
 const API_ROOT = 'https://api.jotform.com/';
 const S3_ROOT = 'http://localhost/React/widgetsapp/server/server.php';
@@ -9,50 +8,38 @@ const API_ROOT_MOCK = '/test/mock/forms.json';
 
 // Fetches an API response
 function callApi(endpoint) {
-  let fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? (API_ROOT + endpoint) : endpoint;
-  fullUrl += '&noV3=true';
-
-  // remove this on production
-  // fullUrl = API_ROOT_MOCK;
+  endpoint += '&noV3=true';
 
   return reqwest({
-    url: fullUrl,
+    url: endpoint,
     crossOrigin: true
   });
 }
 
 // guide http://rackt.org/redux/docs/recipes/ReducingBoilerplate.html
 export default store => next => action => {
-  // console.log('API middleware', store.getState(), action);
 
-  const { types, endpoint, callapi = false } = action;
+  const { types, endpoint = false } = action;
 
-  // if no multiple types, its just a normal action
-  // no api request needed
-  if (typeof types === 'undefined') {
+  // if no endpoint, its not an api action
+  if (!endpoint) {
     return next(action);
   }
 
-  // for types that contains action creators
-  forEach(types, (act) => {
-    if (isObject(act)) {
-      store.dispatch(act);
-    }
-  });
-
-  if (!callapi) {
-    return;
+  if (
+    !isArray(types) ||
+    types.length !== 3 ||
+    !types.every(type => typeof type === 'string')
+  ) {
+    throw new Error('Expected an array of three string types.');
   }
 
-  // api action should have an endpoint
-  if (typeof endpoint === 'undefined') {
-    throw new Error('Expected endpoint to be defined.');
-  }
+  // console.log('API middleware', action);
 
   const [ requestType, successType, failureType ] = types;
 
   // call request action
-  next({
+  store.dispatch({
     type: requestType
   });
 

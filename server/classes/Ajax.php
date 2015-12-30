@@ -14,11 +14,13 @@ class Ajax extends AjaxHandler
         $this->success('Hello word');
     }
 
-    public function lists3Objects() {
+    public function listS3Objects() {
         try {
             $client = new S3Client();
             $result = $client->listObjects(array(
-
+                'marker' => $this->get('marker'),
+                'prefix' => $this->get('prefix'),
+                'maxkeys' => $this->get('maxkeys') | 100
             ));
             $this->success($result);
         } catch (S3Exception $e) {
